@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Linux Patch for Goditto",
+  "version": "1.6.0",
+  "description": "Allows connect.goditto.com to work on linux by spoofing UA/UA-CH + navigator props to Windows 10",
+  "permissions": [
+    "declarativeNetRequest",
+    "scripting",
+    "storage"
+  ],
+  "optional_permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://connect.goditto.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Goditto UA Spoof",
+    "default_icon": {
+      "16": "icons/icon-off-16.png",
+      "32": "icons/icon-off-32.png",
+      "48": "icons/icon-off-48.png",
+      "128": "icons/icon-off-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-off-16.png",
+    "32": "icons/icon-off-32.png",
+    "48": "icons/icon-off-48.png",
+    "128": "icons/icon-off-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://connect.goditto.com/*"
+      ],
+      "js": [
+        "noop.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}
